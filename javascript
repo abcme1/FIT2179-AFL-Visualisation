@@ -1,5 +1,5 @@
 // Point this to your JSON file on GitHub
-var spec = "map_spec.json";
+var spec = "topjson-AUS.json";
 
 vegaEmbed('#vis', spec)
   .then(function(result) {
