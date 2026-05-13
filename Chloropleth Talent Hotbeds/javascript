@@ -1,4 +1,0 @@
-var spec = "map_spec.json";
-vegaEmbed('#vis', spec).then(function(result) {
-    // Access the Vega view instance as result.view
-}).catch(console.error);
