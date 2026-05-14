@@ -1,5 +1,5 @@
 // Point this to your JSON file on GitHub
-var spec = "topjson-AUS.json";
+var spec = "vegalite";
 
 vegaEmbed('#vis', spec)
   .then(function(result) {
