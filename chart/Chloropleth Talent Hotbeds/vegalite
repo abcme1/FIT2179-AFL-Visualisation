@@ -1,0 +1,50 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "AFL Player Density Origin Draft by State (2025)",
+  "width": 600,
+  "height": 450,
+  "projection": {
+    "type": "mercator"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/abcme1/FIT2179-AFL-Visualisation/refs/heads/main/chart/Chloropleth%20Talent%20Hotbeds/topjson-AUS.json",
+    "format": {
+      "type": "topojson",
+      "feature": "ne_50m_admin_1_states_provinces"
+    }
+  },
+  "transform": [
+    {
+      "filter": "datum.properties.admin == 'Australia'"
+    },
+    {
+      "lookup": "properties.name",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/abcme1/FIT2179-AFL-Visualisation/refs/heads/main/chart/Chloropleth%20Talent%20Hotbeds/afl%20draft%20state%20of%20origin%20csv.csv",
+          "format": {"type": "csv"}
+        },
+        "key": "State / Territory",
+        "fields": ["Density (per 100k)", "AFL Players"]
+      }
+    }
+  ],
+  "mark": {
+    "type": "geoshape",
+    "stroke": "white",
+    "strokeWidth": 1
+  },
+  "encoding": {
+    "color": {
+      "field": "Density (per 100k)",
+      "type": "quantitative",
+      "scale": {"scheme": "oranges"},
+      "legend": {"title": "Players per 100k"}
+    },
+    "tooltip": [
+      {"field": "properties.name", "type": "nominal", "title": "State"},
+      {"field": "Density (per 100k)", "type": "quantitative", "format": ".2f"},
+      {"field": "AFL Players", "type": "quantitative"}
+    ]
+  }
+}
