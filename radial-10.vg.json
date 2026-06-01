@@ -1,0 +1,87 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A radial rose chart showing total season goals and average disposals per AFL club.",
+  "title": {
+    "text": "Club Attacking Profiles (2025)",
+    "fontSize": 18,
+    "anchor": "start",
+    "subtitle": "Radial distance represents total goals. Color intensity indicates team average disposals.",
+    "subtitleFontSize": 13,
+    "offset": 15
+  },
+  "width": 500,
+  "height": 500,
+  "data": {
+    "url": "radial graph 10/teamdata.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "arc",
+        "innerRadius": 30,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "theta": {
+          "field": "team",
+          "type": "nominal",
+          "stack": true
+        },
+        "radius": {
+          "field": "total_season_goals",
+          "type": "quantitative",
+          "scale": {
+            "type": "linear",
+            "zero": true,
+            "range": [30, 220]
+          }
+        },
+        "color": {
+          "field": "avg_match_disposals",
+          "type": "quantitative",
+          "title": "Avg Disposals",
+          "scale": {
+            "scheme": "blues"
+          }
+        },
+        "tooltip": [
+          {"field": "team", "type": "nominal", "title": "Club"},
+          {"field": "total_season_goals", "type": "quantitative", "title": "Total Goals"},
+          {"field": "avg_match_disposals", "type": "quantitative", "title": "Avg Disposals/Game"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "radiusOffset": 20,
+        "fontSize": 10,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "theta": {
+          "field": "team",
+          "type": "nominal",
+          "stack": true
+        },
+        "radius": {
+          "field": "total_season_goals",
+          "type": "quantitative",
+          "scale": {
+            "type": "linear",
+            "zero": true,
+            "range": [30, 220]
+          }
+        },
+        "text": {
+          "field": "team",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": "transparent"}
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 780,
+  "height": 980,
+  "padding": {"top": 20, "left": 20, "right": 20, "bottom": 60},
+
+  "data": [
+    {
+      "name": "source",
+      "url": "../waffle graph 6/totaldisposal.csv",
+      "format": {"type": "csv", "parse": {"percentage_share": "number"}}
+    },
+    {
+      "name": "expanded",
+      "source": "source",
+      "transform": [
+        {
+          "type": "window",
+          "ops": ["sum"],
+          "fields": ["percentage_share"],
+          "as": ["cumulative_end"],
+          "frame": [null, 0],
+          "groupby": ["team"]
+        },
+        {"type": "formula", "expr": "datum.cumulative_end - datum.percentage_share", "as": "cumulative_start"},
+        {"type": "formula", "expr": "sequence(datum.cumulative_start, datum.cumulative_end)", "as": "indices"},
+        {"type": "flatten", "fields": ["indices"]},
+        {"type": "formula", "expr": "datum.indices % 10", "as": "col"},
+        {"type": "formula", "expr": "floor(datum.indices / 10)", "as": "row"}
+      ]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": ["Top 3 Midfielders", "Remaining Midfield", "Defenders", "Forwards"],
+      "range": ["#4e79a7", "#f28e2b", "#59a14f", "#e15759"]
+    },
+    {
+      "name": "teamX",
+      "type": "ordinal",
+      "domain": {"data": "expanded", "field": "team", "sort": true},
+      "range": [0, 195, 390, 585]
+    },
+    {
+      "name": "teamY",
+      "type": "ordinal",
+      "domain": {"data": "expanded", "field": "team", "sort": true},
+      "range": [20, 20, 20, 20, 210, 210, 210, 210, 400, 400, 400, 400, 590, 590, 590, 590, 780, 780]
+    }
+  ],
+
+  "legends": [
+    {
+      "fill": "color",
+      "title": "Roster Group",
+      "orient": "bottom",
+      "direction": "horizontal",
+      "titleFontSize": 13,
+      "labelFontSize": 12,
+      "padding": 8
+    }
+  ],
+
+  "marks": [
+    {
+      "type": "group",
+      "from": {
+        "facet": {"name": "byTeam", "data": "expanded", "groupby": "team"}
+      },
+      "encode": {
+        "enter": {
+          "x": {"scale": "teamX", "field": "team"},
+          "y": {"scale": "teamY", "field": "team"},
+          "width": {"value": 185},
+          "height": {"value": 178},
+          "fill": {"value": "#ffffff"},
+          "stroke": {"value": "#cbd5e1"},
+          "strokeWidth": {"value": 1},
+          "cornerRadius": {"value": 8}
+        }
+      },
+      "data": [
+        {
+          "name": "teamName",
+          "source": "byTeam",
+          "transform": [
+            {"type": "aggregate", "groupby": ["team"]}
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "rect",
+          "from": {"data": "teamName"},
+          "encode": {
+            "enter": {
+              "x": {"value": 0},
+              "y": {"value": 0},
+              "width": {"value": 185},
+              "height": {"value": 24},
+              "fill": {"value": "#1e293b"},
+              "cornerRadius": {"value": 7}
+            }
+          }
+        },
+        {
+          "type": "text",
+          "from": {"data": "teamName"},
+          "encode": {
+            "enter": {
+              "x": {"value": 92},
+              "y": {"value": 12},
+              "text": {"field": "team"},
+              "fontSize": {"value": 11},
+              "fontWeight": {"value": "bold"},
+              "fontStyle": {"value": "normal"},
+              "align": {"value": "center"},
+              "baseline": {"value": "middle"},
+              "fill": {"value": "#ffffff"},
+              "font": {"value": "Inter, sans-serif"}
+            }
+          }
+        },
+        {
+          "type": "rect",
+          "from": {"data": "byTeam"},
+          "encode": {
+            "enter": {
+              "x": {"signal": "datum.col * 13 + 10"},
+              "y": {"signal": "(9 - datum.row) * 13 + 32"},
+              "width": {"value": 12},
+              "height": {"value": 12},
+              "fill": {"scale": "color", "field": "roster_group"},
+              "stroke": {"value": "white"},
+              "strokeWidth": {"value": 0.5},
+              "cornerRadius": {"value": 2},
+              "tooltip": {"signal": "{\"Team\": datum.team, \"Group\": datum.roster_group}"}
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

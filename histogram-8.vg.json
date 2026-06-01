@@ -1,0 +1,54 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Distribution of AFL Match Margins (2025 Season)",
+    "subtitle": "Analysis of competition balance: close finishes vs. major blowouts",
+    "fontSize": 15,
+    "anchor": "start",
+    "color": "#1e293b",
+    "subtitleColor": "#64748b",
+    "subtitlePadding": 5
+  },
+  "width": 650,
+  "height": 400,
+  "data": {
+    "url": "histogram map 8/margin.csv"
+  },
+  "mark": {
+    "type": "bar",
+    "color": "#3b82f6",
+    "stroke": "#1d4ed8",
+    "strokeWidth": 1,
+    "tooltip": true
+  },
+  "encoding": {
+    "x": {
+      "field": "margin",
+      "type": "quantitative",
+      "bin": {"step": 10},
+      "title": "Winning Margin (Points)",
+      "axis": {
+        "labelFontSize": 11,
+        "titleFontSize": 13,
+        "titleFontWeight": "bold",
+        "grid": false
+      }
+    },
+    "y": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "title": "Number of Matches",
+      "axis": {
+        "labelFontSize": 11,
+        "titleFontSize": 13,
+        "titleFontWeight": "bold",
+        "grid": true,
+        "gridColor": "#f1f5f9"
+      }
+    }
+  },
+  "config": {
+    "background": "#ffffff",
+    "view": {"stroke": "transparent"}
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A refined horizontal lollipop chart showing AFL club goals.",
+  "title": {
+    "text": "Total Season Goals per Club (2025)",
+    "fontSize": 20,
+    "anchor": "start",
+    "offset": 20
+  },
+  "width": 600,
+  "height": {"step": 22},
+  "data": {
+    "url": "lollipop graph 2/goals, clubs.csv"
+  },
+  "encoding": {
+    "y": {
+      "field": "player_team",
+      "type": "nominal",
+      "title": "AFL Club",
+      "axis": {"grid": false, "titlePadding": 10},
+      "sort": {"field": "goals", "order": "descending"}
+    },
+    "x": {
+      "field": "goals",
+      "type": "quantitative",
+      "title": "Total Season Goals",
+      "scale": {"zero": true},
+      "axis": {"gridDash": [3, 3]}
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule", 
+        "color": "#cbd5e1", 
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x2": {"value": 0}
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "size": 120,       
+        "color": "#1e3a8a", 
+        "opacity": 1
+      },
+      "encoding": {
+        "tooltip": [
+          {"field": "player_team", "type": "nominal", "title": "Club"},
+          {"field": "goals", "type": "quantitative", "title": "Goals"}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {
+      "labelFontSize": 12, 
+      "titleFontSize": 14
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Scatter plot of disposals vs tackles by team for the 2025 season.",
+  "title": {
+    "text": "Disposals vs Tackles by Team (2025)",
+    "fontSize": 18,
+    "anchor": "start",
+    "subtitle": "Each dot is one AFL team total.",
+    "subtitleFontSize": 12,
+    "offset": 10
+  },
+  "width": 700,
+  "height": 500,
+  "data": {
+    "url": "../scatter plot 4/player_stats_2025.csv"
+  },
+  "mark": {
+    "type": "point",
+    "filled": true,
+    "opacity": 0.85,
+    "size": 80
+  },
+  "encoding": {
+    "x": {
+      "field": "disposals",
+      "type": "quantitative",
+      "title": "Disposals",
+      "scale": {"zero": false},
+      "axis": {"grid": true}
+    },
+    "y": {
+      "field": "tackles",
+      "type": "quantitative",
+      "title": "Tackles",
+      "scale": {"zero": true},
+      "axis": {"grid": true}
+    },
+    "color": {
+      "field": "team",
+      "type": "nominal",
+      "title": "Team",
+      "legend": {"orient": "right", "titleFontSize": 12, "labelFontSize": 11}
+    },
+    "tooltip": [
+      {"field": "team", "type": "nominal", "title": "Team"},
+      {"field": "disposals", "type": "quantitative", "title": "Disposals"},
+      {"field": "tackles", "type": "quantitative", "title": "Tackles"}
+    ]
+  },
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {"labelFontSize": 12, "titleFontSize": 13}
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "AFL Team Form & Momentum Trajectory",
+    "fontSize": 20,
+    "anchor": "start",
+    "subtitle": "Cumulative winning and losing margins over the 2025 season.",
+    "subtitleFontSize": 14,
+    "offset": 15
+  },
+  "width": 700,
+  "height": 480,
+  "data": {
+    "url": "connect scatter 7/winlosemargin.csv"
+  },
+  "layer": [
+    {
+      "mark": {"type": "rule", "strokeDash": [4, 4], "color": "#94a3b8", "strokeWidth": 1.5},
+      "encoding": {
+        "y": {"datum": 0}
+      }
+    },
+    {
+      "mark": {"type": "line", "strokeWidth": 3, "interpolate": "linear"},
+      "encoding": {
+        "x": {
+          "field": "round",
+          "type": "quantitative",
+          "title": "Season Round",
+          "scale": {"domain": [1, 29], "nice": false},
+          "axis": {
+            "tickMinStep": 1,
+            "labelFontSize": 11,
+            "titleFontSize": 13,
+            "titleFontWeight": "bold",
+            "grid": true,
+            "gridColor": "#f1f5f9"
+          }
+        },
+        "y": {
+          "field": "margin",
+          "type": "quantitative",
+          "title": "Cumulative Winning / Losing Margin (Points)",
+          "scale": {"domain": [-650, 350]},
+          "axis": {
+            "labelFontSize": 11,
+            "titleFontSize": 13,
+            "titleFontWeight": "bold",
+            "grid": true,
+            "gridColor": "#f1f5f9"
+          }
+        },
+        "color": {
+          "field": "team",
+          "type": "nominal",
+          "title": "AFL Teams",
+          "scale": {
+            "domain": ["Carlton", "Richmond", "North Melbourne"],
+            "range": ["#0E1E3D", "#FFE500", "#002B5C"]
+          }
+        },
+        "opacity": {
+          "condition": {"param": "hover_select", "value": 1},
+          "value": 0.15
+        }
+      }
+    },
+    {
+      "params": [
+        {
+          "name": "hover_select",
+          "select": {
+            "type": "point",
+            "fields": ["team"],
+            "on": "mouseover",
+            "clear": "mouseout"
+          }
+        }
+      ],
+      "mark": {"type": "circle", "size": 60, "tooltip": true},
+      "encoding": {
+        "x": {"field": "round", "type": "quantitative"},
+        "y": {"field": "margin", "type": "quantitative"},
+        "color": {"field": "team", "type": "nominal"},
+        "opacity": {
+          "condition": {"param": "hover_select", "value": 1},
+          "value": 0.15
+        },
+        "tooltip": [
+          {"field": "team", "type": "nominal", "title": "Team"},
+          {"field": "round", "type": "quantitative", "title": "Round"},
+          {"field": "margin", "type": "quantitative", "title": "Cumulative Margin (pts)"}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "background": "#ffffff",
+    "view": {"stroke": "transparent"}
+  }
+}

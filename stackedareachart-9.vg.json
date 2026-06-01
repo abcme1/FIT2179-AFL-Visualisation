@@ -1,0 +1,46 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 400,
+  "title": {
+    "text": "AFL 2025: Cumulative Goal Tally Growth Across the Season",
+    "fontSize": 16,
+    "anchor": "start"
+  },
+  "data": {
+    "url": "../stacked area chart 9/highestteamscore.csv"
+  },
+  "mark": {
+    "type": "area",
+    "line": true,
+    "tooltip": true
+  },
+  "encoding": {
+    "x": {
+      "field": "Round",
+      "type": "nominal",
+      "axis": {
+        "title": "Season Progression (Rounds)",
+        "labelAngle": -45
+      }
+    },
+    "y": {
+      "field": "Goals",
+      "type": "quantitative",
+      "axis": {
+        "title": "Total Cumulative Goals"
+      },
+      "stack": true
+    },
+    "color": {
+      "field": "Team",
+      "type": "nominal",
+      "scale": {
+        "scheme": "category10"
+      },
+      "legend": {
+        "title": "AFL Teams"
+      }
+    }
+  }
+}

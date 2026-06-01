@@ -1,0 +1,99 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "AFL Player Density Origin Draft by State (2020-2025)",
+  "width": 700,
+  "height": 500,
+  "autosize": {"type": "fit", "contains": "padding"},
+  "view": {"stroke": "transparent"},
+  "projection": {
+    "type": "mercator",
+    "center": [133.7751, -27.5],
+    "scale": 640
+  },
+  "params": [
+    {
+      "name": "Select_Year",
+      "value": 2025,
+      "bind": {
+        "input": "range",
+        "min": 2020,
+        "max": 2025,
+        "step": 1,
+        "name": "Year: "
+      }
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "url": "chloropleth map 1/topjson-AUS.json",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_50m_admin_1_states_provinces"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.admin == 'Australia'"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e0e0e0",
+        "stroke": "white",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {
+        "url": "chloropleth map 1/afl draft state of origin.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.Year == Select_Year"
+        },
+        {
+          "lookup": "State / Territory",
+          "from": {
+            "data": {
+              "url": "chloropleth map 1/topjson-AUS.json",
+              "format": {
+                "type": "topojson",
+                "feature": "ne_50m_admin_1_states_provinces"
+              }
+            },
+            "key": "properties.name"
+          },
+          "as": "geo"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "white",
+        "strokeWidth": 1.5,
+        "opacity": 0.95
+      },
+      "encoding": {
+        "shape": {"field": "geo", "type": "geojson"},
+        "color": {
+          "field": "Density (per 100k)",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "oranges",
+            "domain": [0, 1.2]
+          },
+          "legend": {
+            "title": "Players per 100k",
+            "orient": "right",
+            "offset": 10
+          }
+        },
+        "tooltip": [
+          {"field": "State / Territory", "type": "nominal", "title": "State"},
+          {"field": "Density (per 100k)", "type": "quantitative", "format": ".2f", "title": "Density (per 100k)"},
+          {"field": "AFL Players", "type": "quantitative", "title": "Total AFL Players"}
+        ]
+      }
+    }
+  ]
+}
