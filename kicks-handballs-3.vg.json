@@ -4,7 +4,7 @@
   "width": 650,
   "height": 400,
   "data": {
-    "url": "../stacked bar 3/kicks vs handballs.csv"
+    "url": "kicks-handballs-3.csv"
   },
   "transform": [
     {
