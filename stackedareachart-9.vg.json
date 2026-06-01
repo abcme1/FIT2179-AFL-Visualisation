@@ -8,7 +8,7 @@
     "anchor": "start"
   },
   "data": {
-    "url": "../stacked area chart 9/highestteamscore.csv"
+    "url": "highestteamscore-9.csv"
   },
   "mark": {
     "type": "area",
