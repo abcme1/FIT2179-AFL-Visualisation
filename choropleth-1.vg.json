@@ -56,7 +56,7 @@
           "lookup": "State / Territory",
           "from": {
             "data": {
-              "url": "chloropleth map 1/topjson-AUS.json",
+              "url": "https://raw.githubusercontent.com/abcme1/FIT2179-AFL-Visualisation/refs/heads/main/topjson-AUS-1.json",
               "format": {
                 "type": "topojson",
                 "feature": "ne_50m_admin_1_states_provinces"
