@@ -60,7 +60,7 @@
           "lookup": "properties.name",
           "from": {
             "data": {
-              "url": "afl-draft-origin-1-csv"
+              "url": "afl-draft-origin-1.csv"
             },
             "key": "State / Territory",
             "fields": ["Density (per 100k)", "AFL Players", "Year", "State / Territory"]
