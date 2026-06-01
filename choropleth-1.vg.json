@@ -46,25 +46,28 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/abcme1/FIT2179-AFL-Visualisation/refs/heads/main/afl-draft-origin-1.csv"
+        "url": "https://raw.githubusercontent.com/abcme1/FIT2179-AFL-Visualisation/refs/heads/main/topjson-AUS-1.json",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_50m_admin_1_states_provinces"
+        }
       },
       "transform": [
         {
-          "filter": "datum.Year == Select_Year"
+          "filter": "datum.properties.admin == 'Australia'"
         },
         {
-          "lookup": "State / Territory",
+          "lookup": "properties.name",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/abcme1/FIT2179-AFL-Visualisation/refs/heads/main/topjson-AUS-1.json",
-              "format": {
-                "type": "topojson",
-                "feature": "ne_50m_admin_1_states_provinces"
-              }
+              "url": "https://raw.githubusercontent.com/abcme1/FIT2179-AFL-Visualisation/refs/heads/main/afl-draft-origin-1.csv"
             },
-            "key": "properties.name"
-          },
-          "as": "geo"
+            "key": "State / Territory",
+            "fields": ["Density (per 100k)", "AFL Players", "Year", "State / Territory"]
+          }
+        },
+        {
+          "filter": "datum.Year == Select_Year"
         }
       ],
       "mark": {
@@ -74,7 +77,6 @@
         "opacity": 0.95
       },
       "encoding": {
-        "shape": {"field": "geo", "type": "geojson"},
         "color": {
           "field": "Density (per 100k)",
           "type": "quantitative",
