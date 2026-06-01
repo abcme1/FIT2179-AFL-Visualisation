@@ -10,7 +10,7 @@
   "width": 600,
   "height": {"step": 22},
   "data": {
-    "url": "lollipop graph 2/goals, clubs.csv"
+    "url": "goals-clubs-2.csv"
   },
   "encoding": {
     "y": {
