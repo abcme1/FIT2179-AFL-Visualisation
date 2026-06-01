@@ -26,7 +26,7 @@
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/abcme1/FIT2179-AFL-Visualisation/refs/heads/main/topjson-AUS-1.json",
+        "url": "topjson-AUS-1.json",
         "format": {
           "type": "topojson",
           "feature": "ne_50m_admin_1_states_provinces"
@@ -46,7 +46,7 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/abcme1/FIT2179-AFL-Visualisation/refs/heads/main/topjson-AUS-1.json",
+        "url": "topjson-AUS-1.json",
         "format": {
           "type": "topojson",
           "feature": "ne_50m_admin_1_states_provinces"
@@ -60,7 +60,7 @@
           "lookup": "properties.name",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/abcme1/FIT2179-AFL-Visualisation/refs/heads/main/afl-draft-origin-1.csv"
+              "url": "afl-draft-origin-1-csv"
             },
             "key": "State / Territory",
             "fields": ["Density (per 100k)", "AFL Players", "Year", "State / Territory"]
