@@ -1,15 +1,15 @@
 // Paths look directly into the adjacent subfolders from the root directory.
 
-var vg_1 = "chloropleth map 1/chloropleth.vg.json"; 
-var vg_2 = "lollipop graph 2/lollipop.vg.json";
-var vg_3 = "stacked bar 3/kicks vs handballs.vg.json";
-var vg_4 = "scatter plot 4/scatter_plot.vg.json";
-var vg_5 = "line chart 5/attendance_line_chart.vg.json";
-var vg_6 = "waffle graph 6/wafflechart.vg.json";
-var vg_7 = "connect scatter 7/connectscatter.vg.json"; 
-var vg_8 = "histogram map 8/histogram.vg.json"; 
-var vg_9 = "stacked area chart 9/stacked area chart.vg.json";
-var vg_10 = "radial graph 10/radial.vg.json";
+var vg_1 = "chloropleth-1.vg.json"; 
+var vg_2 = "lollipop-2.vg.json";
+var vg_3 = "kicks-handballs-3.vg.json";
+var vg_4 = "scatter_plot-4.vg.json";
+var vg_5 = "attendance_line_chart-5.vg.json";
+var vg_6 = "wafflechart-6.vg.json";
+var vg_7 = "connectscatter-7.vg.json"; 
+var vg_8 = "histogram-8.vg.json"; 
+var vg_9 = "stackedareachart-9.vg.json";
+var vg_10 = "radial-10.vg.json";
 
 vegaEmbed("#chloropleth_chart", vg_1).catch(console.error);
 vegaEmbed("#afl_goals_chart", vg_2).catch(console.error);
