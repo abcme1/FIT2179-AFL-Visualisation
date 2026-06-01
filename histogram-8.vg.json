@@ -12,7 +12,7 @@
   "width": 650,
   "height": 400,
   "data": {
-    "url": "histogram map 8/margin.csv"
+    "url": "margin-8.csv"
   },
   "mark": {
     "type": "bar",
