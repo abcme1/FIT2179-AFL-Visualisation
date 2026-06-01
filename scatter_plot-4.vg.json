@@ -12,7 +12,7 @@
   "width": 700,
   "height": 500,
   "data": {
-    "url": "../scatter plot 4/player_stats_2025.csv"
+    "url": "disposal-tackles-4.csv"
   },
   "mark": {
     "type": "point",
