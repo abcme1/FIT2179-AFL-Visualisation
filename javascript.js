@@ -1,6 +1,6 @@
 // Paths look directly into the adjacent subfolders from the root directory.
 
-var vg_1 = "chloropleth-1.vg.json"; 
+var vg_1 = "choropleth-1.vg.json"; 
 var vg_2 = "lollipop-2.vg.json";
 var vg_3 = "kicks-handballs-3.vg.json";
 var vg_4 = "scatter_plot-4.vg.json";
